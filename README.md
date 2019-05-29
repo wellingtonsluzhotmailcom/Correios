@@ -1,5 +1,3 @@
-<?php 
-
 class Correios{
 
 	/*Código da sua empresa, se você tiver contrato com os correios saberá qual é esse código… 
@@ -213,4 +211,4 @@ class Correios{
 	
 	
 }
-?>
+
