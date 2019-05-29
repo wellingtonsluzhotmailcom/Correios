@@ -1,14 +1,15 @@
+<?php 
 
 class Correios{
 
-	<h2>/*Código da sua empresa, se você tiver contrato com os correios saberá qual é esse código… 
-	Ele é opcional, se não tiver apenas envie o parâmetro em branco.	*/</h2>	
+	/*Código da sua empresa, se você tiver contrato com os correios saberá qual é esse código… 
+	Ele é opcional, se não tiver apenas envie o parâmetro em branco.	*/		
 	private $cdEmpresa,
-	<h2>/*Senha de acesso ao serviço. Geralmente é os 8 primeiros números do CNPJ correspondente ao código
+	/*Senha de acesso ao serviço. Geralmente é os 8 primeiros números do CNPJ correspondente ao código
 	administrativo, caso não tiver é só passar o parâmetro em branco – Se quiser alterar a senha é só acessar 
-	- http://www.corporativo.correios.com.br/encomendas/servicosonline/recuperaSenha*/</h2>
+	- http://www.corporativo.correios.com.br/encomendas/servicosonline/recuperaSenha*/
 	$senha,
-	<h2>/*Por fim o código do serviço.
+	/*Por fim o código do serviço.
 	1) 40010 SEDEX Varejo.
 	2) 40045 SEDEX a Cobrar Varejo.
 	3) 40215 SEDEX 10 Varejo.
@@ -31,38 +32,38 @@ class Correios{
 	12) 81833 (Grupo 2) e-SEDEX, com contrato.
 	13) 81850 (Grupo 3) e-SEDEX, com contrato.
 	14) Os serviços marcados com contrato irão necessitar do código da empresa e senha de acesso ao serviço.
-	*/</h2>
+	*/
 	$servico = '40010, 41106',
 	
-	<h2>/*Um agora acho que o item mais importante que é o CEP de origem, no caso o CEP de onde sai à encomenda. 
+	/*Um agora acho que o item mais importante que é o CEP de origem, no caso o CEP de onde sai à encomenda. 
 	Esse parametro precisa ser numérico, ou seja, você deverá formatar ele para que não entre o “-“ (hífen) 
-	espaços ou algo diferente de um número.*/</h2>
+	espaços ou algo diferente de um número.*/
 	$cepOrigem,
-	<h2>/*CEP de destino, é o CEP do comprador, para onde irá o produto, esse parâmetro também é somente números.*/
+	/*CEP de destino, é o CEP do comprador, para onde irá o produto, esse parâmetro também é somente números.*/
 	$cepDestino,
-	<h2>/*O peso do produto deverá ser enviado em quilogramas, leve em consideração que isso deverá incluir o peso 
-	da embalagem.*/</h2>
+	/*O peso do produto deverá ser enviado em quilogramas, leve em consideração que isso deverá incluir o peso 
+	da embalagem.*/
 	$peso,
-	<h2>/*Não sei por qual motivo mas é necessário falar qual formato da encomenda, nesse caso tem apenas duas
-	opções: 1 para caixa / pacote e 2 para rolo/prisma.*/</h2>
+	/*Não sei por qual motivo mas é necessário falar qual formato da encomenda, nesse caso tem apenas duas
+	opções: 1 para caixa / pacote e 2 para rolo/prisma.*/
 	$formato = "1",
-	<h2>/*O comprimento, altura, largura e diametro deverá ser informado em centímetros e somente números*/</h2>
+	/*O comprimento, altura, largura e diametro deverá ser informado em centímetros e somente números*/
 	$comprimento,
 	$altura,
 	$largura,
 	$diametro = 0,
-	<h2>/*Mão própria, nesse parâmetro você informa se quer a encomenda deverá ser entregue somente para uma 
-	determinada pessoa após confirmação por RG. Use “s” para declarar e “n” para não declarar.*/</h2>
+	/*Mão própria, nesse parâmetro você informa se quer a encomenda deverá ser entregue somente para uma 
+	determinada pessoa após confirmação por RG. Use “s” para declarar e “n” para não declarar.*/
 	$maoPropria = 's',
-	<h2>/*O valor declarado serve para o caso de sua encomenda extraviar, então você poderá recuperar o valor dela.
-	Vale lembrar que o valor da encomenda interfere no valor do frete. Se não quiser declarar pode passar 0 (zero).*/</h2>
+	/*O valor declarado serve para o caso de sua encomenda extraviar, então você poderá recuperar o valor dela.
+	Vale lembrar que o valor da encomenda interfere no valor do frete. Se não quiser declarar pode passar 0 (zero).*/
 	$valorDeclarado = "0",
-	<h2>/*No parâmetro aviso de recebimento, você informa se quer ser avisado sobre a entrega da encomenda. Para não avisar use “n”, para avisar use “s”.*/</h2>
+	/*No parâmetro aviso de recebimento, você informa se quer ser avisado sobre a entrega da encomenda. Para não avisar use “n”, para avisar use “s”.*/
 	$avisoRecebimento = 'n',
-	<h2>/*Por ultimo podemos informar qual formato queremos a consulta seja retornada, podendo ser
+	/*Por ultimo podemos informar qual formato queremos a consulta seja retornada, podendo ser
 	1) Popup – mostra uma janela pop-up
 	2) URL – envia os dados via post para a URL informada
-	3) XML – Retorna a resposta em XML*/</h2>
+	3) XML – Retorna a resposta em XML*/
 	$retorno = 'xml';
 	
 	
@@ -157,7 +158,7 @@ class Correios{
 		 $result = curl_exec($curl);
 		 $result = simplexml_load_string($result);
 		
-		<h2>// retorna  formatado como json mantendo padrão entregue pelo webserice dos correios</h2>
+		// retorna  formatado como json mantendo padrão entregue pelo webserice dos correios
 		if($default){
 		    echo json_encode($result);
 			exit;
@@ -188,7 +189,7 @@ class Correios{
 		 $sn = array("N" => "Não", "S" => "Sim" );
 		
 		 $json = array();	
-		 <h2>//formata os dados recebidos pelo webservice</h2>
+		 //formata os dados recebidos pelo webservice
 		 foreach($result->cServico as $index => $row) {
 		 if($row->Erro == 0) {
 			 $json[$index] = array(
@@ -212,3 +213,4 @@ class Correios{
 	
 	
 }
+?>
